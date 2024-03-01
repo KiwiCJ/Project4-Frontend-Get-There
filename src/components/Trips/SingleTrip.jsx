@@ -24,6 +24,7 @@ const SingleTrip = () => {
             setTrip(foundTrip)
             setLoading(false)
         }
+        // eslint-disable-next-line
     }, [trips, id]);
 
     useEffect(() =>{
@@ -49,6 +50,7 @@ const SingleTrip = () => {
             })
             progressBarRef.current.animate(progressPercentage / 100)
         }
+        // eslint-disable-next-line
     }, [trip])
 
     useEffect(() => {
@@ -67,6 +69,7 @@ const SingleTrip = () => {
             progressBarRef.current.set(progressPercentage / 100)
             progressBarRef.current.path.setAttribute('stroke', color)
         }
+        // eslint-disable-next-line
     }, [trip])
 
     useEffect(() => {
@@ -85,6 +88,7 @@ const SingleTrip = () => {
             }
             fetchExchangeRates();
         }
+        // eslint-disable-next-line
     }, [trip]);
 
     if (loading) {

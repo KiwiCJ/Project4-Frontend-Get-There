@@ -16,6 +16,7 @@ export const TripsProvider = ({ children }) => {
 
     useEffect(() => {
         getTrips()
+        // eslint-disable-next-line
     }, [])
 
     async function getTrips() {

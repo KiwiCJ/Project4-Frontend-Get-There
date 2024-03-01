@@ -68,7 +68,8 @@ export default function AddTripModal({ show, onClose }) {
         console.error('Error fetching exchange rates:', error)
       }
     }
-    fetchExchangeRates();
+    fetchExchangeRates()
+    // eslint-disable-next-line
   }, [])
 
   async function handleSubmit(e) {

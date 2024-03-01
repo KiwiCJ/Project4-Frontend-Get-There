@@ -17,6 +17,7 @@ export default function NavBar() {
     if(localStorage.getItem('access_token') !== null) {
       setIsAuth(true)
     }
+    // eslint-disable-next-line
   }, [isAuth])
 
   const handleLogout = async () => {

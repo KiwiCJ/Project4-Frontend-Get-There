@@ -69,6 +69,7 @@ export default function EditTripModal({ show, onClose, trip }) {
           amount_needed: trip.amount_needed
         })
       }
+      // eslint-disable-next-line
     }, [trip])
   
     useEffect(() => {
@@ -87,6 +88,7 @@ export default function EditTripModal({ show, onClose, trip }) {
         }
         fetchExchangeRates()
       }
+      // eslint-disable-next-line
     }, [trip])
   
     const handleEdit = () => {

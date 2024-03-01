@@ -65,6 +65,7 @@ export default function Converter() {
         }).catch(error => {
             console.error('Error fetching exchange rates:', error)
         })
+    // eslint-disable-next-line
     }, [baseCurrency])
 
     const handleAmountFromChange = (e) => {

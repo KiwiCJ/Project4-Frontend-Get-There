@@ -25,6 +25,7 @@ export default function Logout() {
                 }
             }
         )()
+        // eslint-disable-next-line
     }, [])
 
   return (
