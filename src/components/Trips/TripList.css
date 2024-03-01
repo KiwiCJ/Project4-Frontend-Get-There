@@ -1,0 +1,29 @@
+.trip-list-container {
+    width: 100%;
+}
+
+.trip-grid {
+    display: grid;
+    grid-template-columns: auto-fill, minmax(300px, 1fr);
+    grid-gap: 20px;
+}
+
+.trip-card {
+    background-color: rgb(8, 178, 255);
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    border-radius: 20px;
+}
+
+.trip-list {
+    background-color: rgb(26,32,37);
+    padding: 7vmin;
+    
+}
+.list-title {
+    color: rgb(143, 154, 168);
+    text-align: center;
+}

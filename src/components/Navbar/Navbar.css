@@ -1,0 +1,24 @@
+.navbar {
+    background-color: rgb(26,32,37);
+    position: sticky !important;
+    top: 0;
+    z-index: 1000;
+}
+
+.text-xl {
+    color: rgb(0,170,250);
+    text-shadow: 2px 2px 4px rgba(0,0,0,1);
+}
+
+.navbar-end {
+    color: #a6d8d4 !important;
+}
+
+.navbar-start {
+    color: #c8c6af !important;
+}
+
+#nav-btn {
+    color: rgb(155,164,178) !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
