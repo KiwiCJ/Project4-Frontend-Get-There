@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { useTrips } from '../../context/TripContext'
 import { useNavigate } from 'react-router-dom'
@@ -55,7 +55,8 @@ export default function EditTripModal({ show, onClose, trip }) {
       amount_saved: '',
       amount_needed: ''
     })
-    const [exchangeRates, setExchangeRates] = useState(null)
+    // const [exchangeRates, setExchangeRates] = useState(null)
+    const setExchangeRates = useRef()
   
     useEffect(() => {
       if (trip) {

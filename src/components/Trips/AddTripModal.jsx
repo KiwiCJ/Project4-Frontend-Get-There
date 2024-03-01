@@ -42,18 +42,21 @@ const currencyNames = {
 };
 
 export default function AddTripModal({ show, onClose }) {
-  const { addTrip } = useTrips();
-  const nameRef = useRef();
-  const locationRef = useRef();
-  const notesRef = useRef();
-  const userCurrencyRef = useRef();
-  const countryCurrencyRef = useRef();
-  const amountSavedRef = useRef();
-  const amountNeededRef = useRef();
+  const { addTrip } = useTrips()
+  const nameRef = useRef()
+  const locationRef = useRef()
+  const notesRef = useRef()
+  const userCurrencyRef = useRef()
+  const countryCurrencyRef = useRef()
+  const amountSavedRef = useRef()
+  const amountNeededRef = useRef()
   const [exchangeRates, setExchangeRates] = useState(null)
-  const [baseCurrency, setBaseCurrency] = useState('USD')
-  const [targetCurrency, setTargetCurrency] = useState('EUR')
-  const [convertedAmountSaved, setConvertedAmountSaved] = useState(0)
+  // const [baseCurrency, setBaseCurrency] = useState('USD')
+  // const [targetCurrency, setTargetCurrency] = useState('EUR')
+  // const [convertedAmountSaved, setConvertedAmountSaved] = useState(0)
+  const setBaseCurrency = useRef()
+  const setTargetCurrency = useRef()
+  const setConvertedAmountSaved = useRef()
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
