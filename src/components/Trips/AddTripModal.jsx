@@ -51,12 +51,6 @@ export default function AddTripModal({ show, onClose }) {
   const amountSavedRef = useRef()
   const amountNeededRef = useRef()
   const [exchangeRates, setExchangeRates] = useState(null)
-  // const [baseCurrency, setBaseCurrency] = useState('USD')
-  // const [targetCurrency, setTargetCurrency] = useState('EUR')
-  // const [convertedAmountSaved, setConvertedAmountSaved] = useState(0)
-  const setBaseCurrency = useRef()
-  const setTargetCurrency = useRef()
-  const setConvertedAmountSaved = useRef()
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
@@ -80,14 +74,8 @@ export default function AddTripModal({ show, onClose }) {
     const userCurrency = userCurrencyRef.current.value
     const countryCurrency = countryCurrencyRef.current.value
     const userCurrencyAmount = parseFloat(amountSavedRef.current.value)
-    const exchangeRate = exchangeRates[countryCurrency]
 
-    if (!isNaN(userCurrencyAmount) && exchangeRate) {
-      const convertedAmount = (userCurrencyAmount * exchangeRate).toFixed(2)
-      setConvertedAmountSaved(convertedAmount)
-    } else {
-      setConvertedAmountSaved(0)
-    }
+
 
     try {
       await addTrip({
@@ -103,14 +91,6 @@ export default function AddTripModal({ show, onClose }) {
     } catch (error) {
       console.log('Error Submitting Trip:', error);
     }
-  }
-
-  const handleUserCurrencyChange = (e) => {
-    setBaseCurrency(e.target.value);
-  }
-
-  const handleCountryCurrencyChange = (e) => {
-    setTargetCurrency(e.target.value)
   }
 
 
@@ -150,30 +130,30 @@ export default function AddTripModal({ show, onClose }) {
           </Form.Group>
           <Form.Group controlId="formUserCurrency">
             <Form.Label><strong>Your Saved Currency *</strong></Form.Label>
-            <select className="form-control" ref={userCurrencyRef} onChange={handleUserCurrencyChange}>
-              {exchangeRates && Object.keys(exchangeRates).map(currency => (
-                <option key={currency} value={currency}>{currencyNames[currency]}</option>
-              ))}
-            </select>
-          </Form.Group>
-          <Form.Group controlId="formCountryCurrency">
-            <Form.Label><strong>Visiting Country Currency *</strong></Form.Label>
-            <select className="form-control" ref={countryCurrencyRef} onChange={handleCountryCurrencyChange}>
+            <select className="form-control" ref={userCurrencyRef} >
               {exchangeRates && Object.keys(exchangeRates).map(currency => (
                 <option key={currency} value={currency}>{currencyNames[currency]}</option>
               ))}
             </select>
           </Form.Group>
           <Form.Group controlId="formAmountSaved">
-            <Form.Label><strong>Amount Saved</strong></Form.Label>
+            <Form.Label><strong>Amount Saved</strong> - Your Saved Currency</Form.Label>
             <Form.Control
               type="number"
               placeholder="Enter amount saved"
               ref={amountSavedRef}
             />
           </Form.Group>
+          <Form.Group controlId="formCountryCurrency">
+            <Form.Label><strong>Visiting Country Currency *</strong></Form.Label>
+            <select className="form-control" ref={countryCurrencyRef} >
+              {exchangeRates && Object.keys(exchangeRates).map(currency => (
+                <option key={currency} value={currency}>{currencyNames[currency]}</option>
+              ))}
+            </select>
+          </Form.Group>
           <Form.Group controlId="formAmountNeeded">
-            <Form.Label><strong>Amount Needed *</strong></Form.Label>
+            <Form.Label><strong>Amount Needed *</strong> - Visiting Country Currency</Form.Label>
             <Form.Control
               type="number"
               placeholder="Enter amount needed"

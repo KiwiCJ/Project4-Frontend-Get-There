@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { useTrips } from '../../context/TripContext'
 import { useNavigate } from 'react-router-dom'
@@ -55,8 +55,6 @@ export default function EditTripModal({ show, onClose, trip }) {
       amount_saved: '',
       amount_needed: ''
     })
-    // const [exchangeRates, setExchangeRates] = useState(null)
-    const setExchangeRates = useRef()
   
     useEffect(() => {
       if (trip) {
@@ -77,12 +75,11 @@ export default function EditTripModal({ show, onClose, trip }) {
       if (trip) {
         const fetchExchangeRates = async () => {
           try {
-            const response = await freecurrencyapi.latest({
+            await freecurrencyapi.latest({
               apikey: process.env.REACT_APP_API_KEY,
               base_currency: trip.user_currency,
               currencies: trip.country_currency
             });
-            setExchangeRates(response.data)
           } catch (error) {
             console.error('Error fetching exchange rates:', error)
           }
@@ -163,6 +160,15 @@ export default function EditTripModal({ show, onClose, trip }) {
                   ))}
                 </select>
               </Form.Group>
+              <Form.Group controlId="formAmountSaved">
+                <Form.Label><strong>Amount Saved</strong> - Your Saved Currency</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="amount_saved"
+                  value={formData.amount_saved}
+                  onChange={handleChange}
+                />
+                </Form.Group>
               <Form.Group controlId="formCountryCurrency">
                 <Form.Label><strong>Visiting Country Currency *</strong></Form.Label>
                 <select className="form-control" name="country_currency" value={formData.country_currency} onChange={handleChange} required>
@@ -171,17 +177,8 @@ export default function EditTripModal({ show, onClose, trip }) {
                   ))}
                 </select>
               </Form.Group>
-              <Form.Group controlId="formAmountSaved">
-                <Form.Label><strong>Amount Saved</strong></Form.Label>
-                <Form.Control
-                  type="number"
-                  name="amount_saved"
-                  value={formData.amount_saved}
-                  onChange={handleChange}
-                />
-              </Form.Group>
               <Form.Group controlId="formAmountNeeded">
-                <Form.Label><strong>Amount Needed *</strong></Form.Label>
+                <Form.Label><strong>Amount Needed *</strong> - Visiting Country Currency</Form.Label>
                 <Form.Control
                   type="number"
                   name="amount_needed"
