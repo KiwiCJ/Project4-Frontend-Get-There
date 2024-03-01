@@ -16,7 +16,7 @@ export default function Signup({ show, onClose }) {
           password: pwdRef.current.value,
         }
       
-        const { data } = await axios.post(
+        await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/signup/`,
           user,
           {
